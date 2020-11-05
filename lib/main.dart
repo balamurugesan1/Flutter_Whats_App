@@ -8,8 +8,8 @@ void main() {
   runApp(new MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: new ThemeData(
-        primaryColor: new Color(0xff075e54),
-        accentColor: new Color(0xff25D366)),
+        primaryColor: new Color(0xffD32F2F),
+        accentColor: new Color(0xffe01616)),
     home: MyApp(),
   ));
 }
