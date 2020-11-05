@@ -12,7 +12,7 @@ class Status extends StatelessWidget {
           children: [
             Expanded(
                 child: ListTile(
-              leading: Container(
+              leading: Container( 
                 width: 50.0,
                 child: Stack(
                   children: [
