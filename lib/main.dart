@@ -9,7 +9,7 @@ void main() {
     debugShowCheckedModeBanner: false,
     theme: new ThemeData(
         primaryColor: new Color(0xff075e54),
-        accentColor: new Color(0xff075E54)),
+        accentColor: new Color(0xff25D366)),
     home: MyApp(),
   ));
 }
@@ -30,6 +30,8 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
     super.initState();
   }
 
+  String dropdownValue = 'One';
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -42,12 +44,32 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                   color: Colors.white,
                 ),
                 onPressed: null),
-            IconButton(
-                icon: Icon(
-                  Icons.more_vert,
-                  color: Colors.white,
-                ),
-                onPressed: null)
+            DropdownButton<String>(
+              // value: dropdownValue,
+              icon: Icon(Icons.more_vert),
+              iconEnabledColor: Colors.white,
+              style: TextStyle(color: Colors.white),
+              onChanged: (String newValue) {
+                setState(() {
+                  dropdownValue = newValue;
+                });
+              },
+              items: <String>[
+                'New group',
+                'New broadcast',
+                'WhatsApp Web',
+                'Starred messages',
+                'Settings'
+              ].map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style: TextStyle(color: Colors.black),
+                  ),
+                );
+              }).toList(),
+            )
           ],
           bottom: TabBar(
             indicatorColor: Colors.white,
@@ -79,6 +101,9 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
         ),
         floatingActionButton: myTabController.index == 0
             ? FloatingActionButton(
+                onPressed: () {
+                  print('Status');
+                },
                 child: Icon(
                   Icons.camera_alt,
                   color: Colors.white,
@@ -86,19 +111,50 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
               )
             : myTabController.index == 1
                 ? FloatingActionButton(
+                    onPressed: () {
+                      print('Status');
+                    },
                     child: Icon(
                       Icons.message,
                       color: Colors.white,
                     ),
                   )
                 : myTabController.index == 2
-                    ? FloatingActionButton(
-                        child: Icon(
-                          Icons.edit,
-                          color: Colors.white,
-                        ),
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          SizedBox(
+                            height: 45.0,
+                            width: 45.0,
+                            child: FloatingActionButton(
+                              backgroundColor: Colors.white,
+                              onPressed: () {
+                                print('Status');
+                              },
+                              child: Icon(
+                                Icons.edit,
+                                color: Colors.blueGrey,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          FloatingActionButton(
+                            onPressed: () {
+                              print('Status');
+                            },
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.white,
+                            ),
+                          )
+                        ],
                       )
                     : FloatingActionButton(
+                        onPressed: () {
+                          print('Status');
+                        },
                         child: Icon(
                           Icons.add_call,
                           color: Colors.white,
